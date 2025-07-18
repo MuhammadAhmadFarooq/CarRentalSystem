@@ -34,7 +34,10 @@ coverage
 *.tgz
 .idea/
 .vscode/
+.vscode/tasks.json
 
 # Ignore uploads and temp files
 uploads/
 tmp/
+# Remove V directory
+V/

@@ -1,8 +1,7 @@
 # Node dependencies
 node_modules/
-client/node_modules/
 server/node_modules/
-
+**/node_modules/
 # Build output
 dist/
 build/
@@ -39,3 +38,8 @@ Thumbs.db
 # Uploads and temp
 uploads/
 tmp/
+
+# Copilot instructions
+.github/copilot-instructions.md
+# Remove V directory
+V/
