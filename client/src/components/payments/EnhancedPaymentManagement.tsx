@@ -197,7 +197,7 @@ export default function EnhancedPaymentManagement() {
   const fetchPayments = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/payments', {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/payments`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       console.log('Fetched payments:', response.data);
@@ -210,7 +210,7 @@ export default function EnhancedPaymentManagement() {
   const fetchVendorTransactions = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/vendor-transactions', {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/vendor-transactions`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setVendorTransactions(response.data);
@@ -222,7 +222,7 @@ export default function EnhancedPaymentManagement() {
   const fetchBalances = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/payments/balances', {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/payments/balances`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setBalances(response.data);
@@ -234,7 +234,7 @@ export default function EnhancedPaymentManagement() {
   const fetchVendorBalances = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/vendor-transactions/balances', {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/vendor-transactions/balances`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setVendorBalances(response.data);
@@ -246,7 +246,7 @@ export default function EnhancedPaymentManagement() {
   const fetchCustomers = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/customers', {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/customers`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setCustomers(response.data);
@@ -258,7 +258,7 @@ export default function EnhancedPaymentManagement() {
   const fetchBookings = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/bookings', {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/bookings`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       console.log('Fetched bookings:', response.data);
@@ -271,7 +271,7 @@ export default function EnhancedPaymentManagement() {
   const fetchVendors = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/vehicles', {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/vehicles`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       // Extract unique vendors from outsourced vehicles
@@ -341,13 +341,13 @@ export default function EnhancedPaymentManagement() {
       console.log('Sending payment data:', paymentData);
       
       if (editingPayment) {
-        const response = await axios.put(`http://localhost:5000/api/payments/${editingPayment._id}`, paymentData, {
+        const response = await axios.put(`${process.env.REACT_APP_API_URL}/api/payments/${editingPayment._id}`, paymentData, {
           headers: { Authorization: `Bearer ${token}` }
         });
         console.log('Update response:', response);
         showAlert('Payment updated successfully', 'success');
       } else {
-        const response = await axios.post('http://localhost:5000/api/payments', paymentData, {
+        const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/payments`, paymentData, {
           headers: { Authorization: `Bearer ${token}` }
         });
         console.log('Create response:', response);
@@ -373,12 +373,12 @@ export default function EnhancedPaymentManagement() {
       const token = localStorage.getItem('token');
       
       if (editingVendorTransaction) {
-        await axios.put(`http://localhost:5000/api/vendor-transactions/${editingVendorTransaction._id}`, vendorFormData, {
+        await axios.put(`${process.env.REACT_APP_API_URL}/api/vendor-transactions/${editingVendorTransaction._id}`, vendorFormData, {
           headers: { Authorization: `Bearer ${token}` }
         });
         showAlert('Vendor transaction updated successfully', 'success');
       } else {
-        await axios.post('http://localhost:5000/api/vendor-transactions', vendorFormData, {
+        await axios.post(`${process.env.REACT_APP_API_URL}/api/vendor-transactions`, vendorFormData, {
           headers: { Authorization: `Bearer ${token}` }
         });
         showAlert('Vendor transaction created successfully', 'success');

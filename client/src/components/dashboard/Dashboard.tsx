@@ -59,8 +59,8 @@ export default function Dashboard() {
 
       // Use correct backend endpoints
       const [summaryResponse, activitiesResponse] = await Promise.all([
-        axios.get('http://localhost:5000/api/dashboard/summary', { headers }),
-        axios.get('http://localhost:5000/api/dashboard/recent-activities', { headers })
+        axios.get(`${process.env.REACT_APP_API_URL}/api/dashboard/summary`, { headers }),
+        axios.get(`${process.env.REACT_APP_API_URL}/api/dashboard/recent-activities`, { headers })
       ]);
 
       // Map backend summary to expected stats object

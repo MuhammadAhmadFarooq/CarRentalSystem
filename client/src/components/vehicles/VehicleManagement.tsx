@@ -79,7 +79,7 @@ export default function VehicleManagement() {
   const fetchVehicles = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/vehicles', {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/vehicles`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setVehicles(response.data);
@@ -106,11 +106,11 @@ export default function VehicleManagement() {
       };
 
       if (editingVehicle) {
-        await axios.put(`http://localhost:5000/api/vehicles/${editingVehicle._id}`, data, {
+        await axios.put(`${process.env.REACT_APP_API_URL}/api/vehicles/${editingVehicle._id}`, data, {
           headers: { Authorization: `Bearer ${token}` }
         });
       } else {
-        await axios.post('http://localhost:5000/api/vehicles', data, {
+        await axios.post(`${process.env.REACT_APP_API_URL}/api/vehicles`, data, {
           headers: { Authorization: `Bearer ${token}` }
         });
       }
@@ -126,7 +126,7 @@ export default function VehicleManagement() {
     if (window.confirm('Are you sure you want to delete this vehicle?')) {
       try {
         const token = localStorage.getItem('token');
-        await axios.delete(`http://localhost:5000/api/vehicles/${id}`, {
+        await axios.delete(`${process.env.REACT_APP_API_URL}/api/vehicles/${id}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         fetchVehicles();

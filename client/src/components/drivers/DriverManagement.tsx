@@ -92,7 +92,7 @@ export default function DriverManagement() {
   const fetchDrivers = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/drivers', {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/drivers`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setDrivers(response.data);
@@ -152,11 +152,11 @@ export default function DriverManagement() {
       };
 
       if (editingDriver) {
-        await axios.put(`http://localhost:5000/api/drivers/${editingDriver._id}`, data, {
+        await axios.put(`${process.env.REACT_APP_API_URL}/api/drivers/${editingDriver._id}`, data, {
           headers: { Authorization: `Bearer ${token}` }
         });
       } else {
-        await axios.post('http://localhost:5000/api/drivers', data, {
+        await axios.post(`${process.env.REACT_APP_API_URL}/api/drivers`, data, {
           headers: { Authorization: `Bearer ${token}` }
         });
       }
@@ -172,7 +172,7 @@ export default function DriverManagement() {
     if (window.confirm('Are you sure you want to delete this driver?')) {
       try {
         const token = localStorage.getItem('token');
-        await axios.delete(`http://localhost:5000/api/drivers/${id}`, {
+        await axios.delete(`${process.env.REACT_APP_API_URL}/api/drivers/${id}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         fetchDrivers();

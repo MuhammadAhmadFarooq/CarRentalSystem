@@ -78,7 +78,7 @@ export default function OutsourcedVehicleManagement() {
   const fetchVehicles = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/outsourced-vehicles', {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/outsourced-vehicles`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setVehicles(response.data);
@@ -101,11 +101,11 @@ export default function OutsourcedVehicleManagement() {
       };
 
       if (editingVehicle) {
-        await axios.put(`http://localhost:5000/api/outsourced-vehicles/${editingVehicle._id}`, vehicleData, {
+        await axios.put(`${process.env.REACT_APP_API_URL}/api/outsourced-vehicles/${editingVehicle._id}`, vehicleData, {
           headers: { Authorization: `Bearer ${token}` }
         });
       } else {
-        await axios.post('http://localhost:5000/api/outsourced-vehicles', vehicleData, {
+        await axios.post(`${process.env.REACT_APP_API_URL}/api/outsourced-vehicles`, vehicleData, {
           headers: { Authorization: `Bearer ${token}` }
         });
       }
@@ -142,7 +142,7 @@ export default function OutsourcedVehicleManagement() {
     if (window.confirm('Are you sure you want to delete this vehicle?')) {
       try {
         const token = localStorage.getItem('token');
-        await axios.delete(`http://localhost:5000/api/outsourced-vehicles/${id}`, {
+        await axios.delete(`${process.env.REACT_APP_API_URL}/api/outsourced-vehicles/${id}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         fetchVehicles();

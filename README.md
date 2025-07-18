@@ -136,7 +136,7 @@ A comprehensive MERN stack web application for managing a car rental business. T
 
 6. **Access the application**
    - Frontend: http://localhost:3000
-   - Backend API: http://localhost:5000
+   - Backend API: ${process.env.REACT_APP_API_URL}
 
 ### Alternative Commands
 

@@ -32,7 +32,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     if (token) {
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       // Verify token and get user info
-      axios.get('/api/auth/me')
+      axios.get(`${process.env.REACT_APP_API_URL}/api/auth/me`)
         .then(response => {
           setUser(response.data.user);
         })
@@ -52,7 +52,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   const login = async (email: string, password: string) => {
     try {
-      const response = await axios.post('/api/auth/login', { email, password });
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/login`, { email, password });
       const { token, user } = response.data;
       
       localStorage.setItem('token', token);

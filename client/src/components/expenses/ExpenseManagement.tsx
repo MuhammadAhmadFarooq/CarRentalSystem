@@ -121,7 +121,7 @@ export default function ExpenseManagement() {
   const fetchExpenses = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/expenses', {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/expenses`, {
         headers: { Authorization: `Bearer ${token}` },
         params: filters
       });
@@ -135,7 +135,7 @@ export default function ExpenseManagement() {
   const fetchVehicles = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/vehicles', {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/vehicles`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setVehicles(response.data);
@@ -147,7 +147,7 @@ export default function ExpenseManagement() {
   const fetchDrivers = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/drivers', {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/drivers`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setDrivers(response.data);
@@ -160,7 +160,7 @@ export default function ExpenseManagement() {
     try {
       const token = localStorage.getItem('token');
       console.log('Fetching bookings with token:', token ? 'Token exists' : 'No token');
-      const response = await axios.get('http://localhost:5000/api/bookings', {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/bookings`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       console.log('Bookings response:', response.data);
@@ -183,8 +183,8 @@ export default function ExpenseManagement() {
     try {
       const token = localStorage.getItem('token');
       const url = editingExpense 
-        ? `http://localhost:5000/api/expenses/${editingExpense._id}`
-        : 'http://localhost:5000/api/expenses';
+        ? `${process.env.REACT_APP_API_URL}/api/expenses/${editingExpense._id}`
+        : `${process.env.REACT_APP_API_URL}/api/expenses`;
       
       const method = editingExpense ? 'put' : 'post';
       
@@ -215,7 +215,7 @@ export default function ExpenseManagement() {
     if (window.confirm('Are you sure you want to delete this expense?')) {
       try {
         const token = localStorage.getItem('token');
-        await axios.delete(`http://localhost:5000/api/expenses/${id}`, {
+        await axios.delete(`${process.env.REACT_APP_API_URL}/api/expenses/${id}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         showAlert('Expense deleted successfully', 'success');

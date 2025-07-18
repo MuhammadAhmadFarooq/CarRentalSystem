@@ -219,7 +219,7 @@ export default function EnhancedBookingManagement() {
   const fetchBookings = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/bookings', {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/bookings`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       console.log('Fetched bookings:', response.data);
@@ -235,7 +235,7 @@ export default function EnhancedBookingManagement() {
   const fetchCustomers = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/customers', {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/customers`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setCustomers(Array.isArray(response.data) ? response.data : []);
@@ -248,7 +248,7 @@ export default function EnhancedBookingManagement() {
   const fetchVehicles = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/vehicles', {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/vehicles`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setVehicles(Array.isArray(response.data) ? response.data : []);
@@ -261,7 +261,7 @@ export default function EnhancedBookingManagement() {
   const fetchDrivers = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/drivers', {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/drivers`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       const driversData = Array.isArray(response.data) ? response.data : [];
@@ -432,12 +432,12 @@ export default function EnhancedBookingManagement() {
       };
 
       if (editingBooking) {
-        await axios.put(`http://localhost:5000/api/bookings/${editingBooking._id}`, bookingData, {
+        await axios.put(`${process.env.REACT_APP_API_URL}/api/bookings/${editingBooking._id}`, bookingData, {
           headers: { Authorization: `Bearer ${token}` }
         });
         showAlert('Booking updated successfully', 'success');
       } else {
-        await axios.post('http://localhost:5000/api/bookings', bookingData, {
+        await axios.post(`${process.env.REACT_APP_API_URL}/api/bookings`, bookingData, {
           headers: { Authorization: `Bearer ${token}` }
         });
         showAlert('Booking created successfully', 'success');
@@ -558,7 +558,7 @@ export default function EnhancedBookingManagement() {
     if (window.confirm('Are you sure you want to delete this booking? This action cannot be undone.')) {
       try {
         const token = localStorage.getItem('token');
-        await axios.delete(`http://localhost:5000/api/bookings/${bookingId}`, {
+        await axios.delete(`${process.env.REACT_APP_API_URL}/api/bookings/${bookingId}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         

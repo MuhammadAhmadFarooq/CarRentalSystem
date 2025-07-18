@@ -80,7 +80,7 @@ export default function CustomerManagement() {
   const fetchCustomers = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/customers', {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/customers`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setCustomers(response.data);
@@ -112,11 +112,11 @@ export default function CustomerManagement() {
       };
       
       if (editingCustomer) {
-        await axios.put(`http://localhost:5000/api/customers/${editingCustomer._id}`, customerData, {
+        await axios.put(`${process.env.REACT_APP_API_URL}/api/customers/${editingCustomer._id}`, customerData, {
           headers: { Authorization: `Bearer ${token}` }
         });
       } else {
-        await axios.post('http://localhost:5000/api/customers', customerData, {
+        await axios.post(`${process.env.REACT_APP_API_URL}/api/customers`, customerData, {
           headers: { Authorization: `Bearer ${token}` }
         });
       }
@@ -132,7 +132,7 @@ export default function CustomerManagement() {
     if (window.confirm('Are you sure you want to delete this customer?')) {
       try {
         const token = localStorage.getItem('token');
-        await axios.delete(`http://localhost:5000/api/customers/${id}`, {
+        await axios.delete(`${process.env.REACT_APP_API_URL}/api/customers/${id}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         fetchCustomers();

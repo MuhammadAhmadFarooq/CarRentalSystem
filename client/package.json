@@ -2,7 +2,7 @@
   "name": "car-rental-client",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:5000",
+  "proxy": "${process.env.REACT_APP_API_URL}",
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",

@@ -115,19 +115,19 @@ export default function EnhancedReports() {
       const token = localStorage.getItem('token');
       
       const [vehicleUsageRes, vendorRes, financialRes, monthlyRes] = await Promise.all([
-        axios.get('http://localhost:5000/api/reports/vehicles', {
+        axios.get(`${process.env.REACT_APP_API_URL}/api/reports/vehicles`, {
           headers: { Authorization: `Bearer ${token}` },
           params: filters
         }),
-        axios.get('http://localhost:5000/api/reports/drivers', {
+        axios.get(`${process.env.REACT_APP_API_URL}/api/reports/drivers`, {
           headers: { Authorization: `Bearer ${token}` },
           params: filters
         }),
-        axios.get('http://localhost:5000/api/reports/financial', {
+        axios.get(`${process.env.REACT_APP_API_URL}/api/reports/financial`, {
           headers: { Authorization: `Bearer ${token}` },
           params: filters
         }),
-        axios.get('http://localhost:5000/api/reports/monthly', {
+        axios.get(`${process.env.REACT_APP_API_URL}/api/reports/monthly`, {
           headers: { Authorization: `Bearer ${token}` },
           params: filters
         })
