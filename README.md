@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# CarRentalSystem
-=======
 # Car Rental Admin Management System
 
 A comprehensive MERN stack web application for managing a car rental business. This system provides a complete admin panel for tracking vehicles, customers, drivers, bookings, expenses, and payments.
@@ -226,4 +223,3 @@ For issues and questions, please create an issue in the repository or contact th
 ---
 
 **Car Rental Admin Management System** - Comprehensive solution for single-branch car rental business management.
->>>>>>> c0559aa (Remove node_modules from git tracking)
